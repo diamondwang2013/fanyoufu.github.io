@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue 代码规范 | Mr.fan&#39;s blog</title>
+    <meta name="description" content="我的个人博客页">
+    <link rel="icon" href="/log.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.0ae7abfa.css" as="style"><link rel="preload" href="/assets/js/app.bcaddda2.js" as="script"><link rel="preload" href="/assets/js/7.f0855c9f.js" as="script"><link rel="preload" href="/assets/js/1.27c8ca9b.js" as="script"><link rel="preload" href="/assets/js/2.44c6b616.js" as="script"><link rel="preload" href="/assets/js/25.ac3a1d8f.js" as="script"><link rel="prefetch" href="/assets/js/10.81af04c7.js"><link rel="prefetch" href="/assets/js/11.399fde20.js"><link rel="prefetch" href="/assets/js/12.cb54b9b0.js"><link rel="prefetch" href="/assets/js/13.c90a9bf8.js"><link rel="prefetch" href="/assets/js/14.ab140587.js"><link rel="prefetch" href="/assets/js/15.d1f89891.js"><link rel="prefetch" href="/assets/js/16.8960423f.js"><link rel="prefetch" href="/assets/js/17.d2ba8af6.js"><link rel="prefetch" href="/assets/js/18.735ddaa6.js"><link rel="prefetch" href="/assets/js/19.d9387dd0.js"><link rel="prefetch" href="/assets/js/20.95133492.js"><link rel="prefetch" href="/assets/js/21.efd36f3d.js"><link rel="prefetch" href="/assets/js/22.65699670.js"><link rel="prefetch" href="/assets/js/23.7c933026.js"><link rel="prefetch" href="/assets/js/24.179ac8ad.js"><link rel="prefetch" href="/assets/js/26.eb894581.js"><link rel="prefetch" href="/assets/js/27.c8108a1c.js"><link rel="prefetch" href="/assets/js/28.58dc991c.js"><link rel="prefetch" href="/assets/js/4.8a131703.js"><link rel="prefetch" href="/assets/js/5.7c007d97.js"><link rel="prefetch" href="/assets/js/6.5f4a24f3.js"><link rel="prefetch" href="/assets/js/8.bf2e8b7f.js"><link rel="prefetch" href="/assets/js/9.d80d5c4a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0ae7abfa.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Mr.fan's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue/" class="nav-link router-link-active">vue</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">算法</a></div><div class="nav-item"><a href="/think/" class="nav-link">程序之道</a></div><div class="nav-item"><a href="/javascript/" class="nav-link">前端</a></div><div class="nav-item"><a href="/typescript/" class="nav-link">typescrit</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue/" class="nav-link router-link-active">vue</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">算法</a></div><div class="nav-item"><a href="/think/" class="nav-link">程序之道</a></div><div class="nav-item"><a href="/javascript/" class="nav-link">前端</a></div><div class="nav-item"><a href="/typescript/" class="nav-link">typescrit</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/vue/" class="sidebar-link">vue.js 学习总结</a></li><li><a href="/vue/component.html" class="sidebar-link">组件</a></li><li><a href="/vue/codeformatter.html" class="active sidebar-link">vue 代码规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#组件命名" class="sidebar-link">组件命名</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#基本要求" class="sidebar-link">基本要求</a></li></ul></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#父子组件" class="sidebar-link">父子组件</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#公共组件" class="sidebar-link">公共组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#单文件组件中顶级元素的顺序" class="sidebar-link">单文件组件中顶级元素的顺序</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#组件中-options-的顺序" class="sidebar-link">组件中 options 的顺序</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#data-数据项-的命名" class="sidebar-link">data 数据项 的命名</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#普通成员变量的命令" class="sidebar-link">普通成员变量的命令</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#props-的命名" class="sidebar-link">props 的命名</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#computed-的命名" class="sidebar-link">computed 的命名</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#私有数据的命名" class="sidebar-link">私有数据的命名</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#methods-的命名" class="sidebar-link">methods 的命名</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#methods-拆到单独的文件中" class="sidebar-link">methods 拆到单独的文件中</a></li><li class="sidebar-sub-header"><a href="/vue/codeformatter.html#mixin-相关的命名" class="sidebar-link">Mixin 相关的命名</a></li></ul></li></ul></li></ul> </div> <div class="page"> <div class="content default"><h1 id="vue-代码规范"><a href="#vue-代码规范" aria-hidden="true" class="header-anchor">#</a> vue 代码规范</h1> <p><a href="https://cn.vuejs.org/v2/style-guide/index.html" target="_blank" rel="noopener noreferrer">官方推荐<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>要有自己的一套科学的，固定的代码风格。可以从官方推荐的风格的基础上再次编辑。</p> <h2 id="组件命名"><a href="#组件命名" aria-hidden="true" class="header-anchor">#</a> 组件命名</h2> <h3 id="基本要求"><a href="#基本要求" aria-hidden="true" class="header-anchor">#</a> 基本要求</h3> <ul><li>单文件名使用大驼峰命名法。如：ItemList.vue</li> <li>单文件名与组件名保持一致。</li> <li>组件名中的单词尽量完整。ItemList.vue 要比 ItList.vue 好</li></ul> <h2 id="父子组件"><a href="#父子组件" aria-hidden="true" class="header-anchor">#</a> 父子组件</h2> <ul><li>如果一个组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上：子组件名字中带上父组件的信息。
+如:
+<ul><li>Item.vue （父组件）</li> <li>ItemButton.vue （子组件）</li> <li>ItemInput.vue （子组件）</li></ul></li></ul> <h2 id="公共组件"><a href="#公共组件" aria-hidden="true" class="header-anchor">#</a> 公共组件</h2> <ul><li>公共组件加 Common 前缀。如：CommonButton.vue</li></ul> <h3 id="单文件组件中顶级元素的顺序"><a href="#单文件组件中顶级元素的顺序" aria-hidden="true" class="header-anchor">#</a> 单文件组件中顶级元素的顺序</h3> <div class="language- extra-class"><pre class="language-text"><code>&lt;template&gt;/* ... */&lt;/template&gt;
+&lt;script&gt;/* ... */&lt;/script&gt;
+&lt;style&gt;/* ... */&lt;/style&gt;
+</code></pre></div><h3 id="组件中-options-的顺序"><a href="#组件中-options-的顺序" aria-hidden="true" class="header-anchor">#</a> 组件中 options 的顺序</h3> <div class="language- extra-class"><pre class="language-text"><code>export default MyComponent{
+    // 1. 输入参数
+    props:{},
+    components:{},
+
+    // 2. 本地信息
+    data:{},
+    computed:{},
+
+    // 3. 方法
+    methods:{},
+
+    // 4. 事件
+    created(){},
+    mounted(){},
+    watch:{},
+}
+</code></pre></div><h3 id="data-数据项-的命名"><a href="#data-数据项-的命名" aria-hidden="true" class="header-anchor">#</a> data 数据项 的命名</h3> <p>正常命名</p> <div class="language- extra-class"><pre class="language-text"><code>data(){
+	return {
+		dataTable: []
+	}
+}
+</code></pre></div><p>注意：
+减少放在data中的数据项。一放其中，就会增加监听开销。如果数据只是从接口中取出，并显示，而没有修改，编辑之类的操作，则可以使用Object.freeze()。</p> <h3 id="普通成员变量的命令"><a href="#普通成员变量的命令" aria-hidden="true" class="header-anchor">#</a> 普通成员变量的命令</h3> <p>为了在多个方法中“共享数据”，在名称的前面加_ .</p> <div class="language- extra-class"><pre class="language-text"><code>created(){
+	this._tableName = &quot;niaho&quot;
+}
+</code></pre></div><h3 id="props-的命名"><a href="#props-的命名" aria-hidden="true" class="header-anchor">#</a> props 的命名</h3> <p>加前缀 p。这样可以与 data()中的数据项区别开。
+例如：</p> <div class="language- extra-class"><pre class="language-text"><code>props:{
+    pTitleName:{type:String,default:&quot;&quot;}
+}
+</code></pre></div><h3 id="computed-的命名"><a href="#computed-的命名" aria-hidden="true" class="header-anchor">#</a> computed 的命名</h3> <p>加前缀 c。这样可以与 data()中的数据项区别开。
+例如：</p> <div class="language- extra-class"><pre class="language-text"><code>computed:{
+    cTitle(){
+        return this.title + &quot;[&quot; + this.pTitleName +&quot;]&quot;
+    }
+}
+</code></pre></div><h3 id="私有数据的命名"><a href="#私有数据的命名" aria-hidden="true" class="header-anchor">#</a> 私有数据的命名</h3> <p>在 components 的内部，希望数据在不同的方法中共用。例如</p> <div class="language- extra-class"><pre class="language-text"><code>methods:{
+    m1(){
+        this.titleName = 'a'
+    },
+    m2(){
+        this.titleName = 'b'
+    }
+},
+</code></pre></div><p>如果你看到上面的代码，你认为 titleName 是如如何挂载在 this 对象上的呢？ 有两个方法：</p> <div class="language- extra-class"><pre class="language-text"><code>data(){return {titleName: ''}}
+</code></pre></div><p>这是一个典型的做法，也是数据驱动视图的核心所在：当 titleName 发生变化时，视图会刷新。</p> <p>还有一种写法：</p> <div class="language- extra-class"><pre class="language-text"><code>created(){
+    this.titleName = ''
+}
+</code></pre></div><p>此时 titleName 就只是一个  普通的成员属性：但它的值发生变化时，视图会更新。如果是这种情况，把它的名字前加_.</p> <p>这样我们有三个与 title 相关的数据了：</p> <ul><li>this._titleName: 私有成员</li> <li>this.title : 在 data()中的数据</li> <li>this.pTitleName： props 中的数据</li> <li>this.cTitle： 计算属性</li></ul> <h3 id="methods-的命名"><a href="#methods-的命名" aria-hidden="true" class="header-anchor">#</a> methods 的命名</h3> <p>可以把 methods 中的函数项分成两类：</p> <ul><li>事件响应函数:加<code>前缀h</code>。</li> <li>其他</li></ul> <p>举个例子：页面上有个按钮，点击之后获取数据，然后加工数据，给本地数据项赋值。</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;template&gt;
+&lt;div&gt;
+    &lt;button @click=&quot;hClick&quot;&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    methods:{
+        hClick(){
+            API.GETXXXData().then(rs=&gt;{
+
+                this.initData(rs);
+            })
+        },
+        initData(data){
+            ....
+            return ...;
+        }
+    }
+&lt;/script&gt;
+</code></pre></div><h3 id="methods-拆到单独的文件中"><a href="#methods-拆到单独的文件中" aria-hidden="true" class="header-anchor">#</a> methods 拆到单独的文件中</h3> <p>index.vue</p> <div class="language- extra-class"><pre class="language-text"><code>import mFunc from './index.vue.js'
+
+export default{
+    methods:{
+        ...mFunc,
+        method2:{
+            this.method1();
+        }
+    }
+}
+</code></pre></div><p>index.vue.js</p> <div class="language- extra-class"><pre class="language-text"><code>export default {
+    method1:{}
+}
+</code></pre></div><h3 id="mixin-相关的命名"><a href="#mixin-相关的命名" aria-hidden="true" class="header-anchor">#</a> Mixin 相关的命名</h3> <h4 id="文件组织"><a href="#文件组织" aria-hidden="true" class="header-anchor">#</a> 文件组织</h4> <p>尽可能把全部的 mixin 放在一个文件夹中：</p> <div class="language- extra-class"><pre class="language-text"><code>
+-mixin
+--mixinTable.js
+--mininBasic.js
+
+</code></pre></div><h4 id="mixin-文件名的命名格式为：mixin-名词-js。"><a href="#mixin-文件名的命名格式为：mixin-名词-js。" aria-hidden="true" class="header-anchor">#</a> mixin 文件名的命名格式为：mixin+名词.js。</h4> <p>如：
+mixinTable.js</p> <p>其中所有的设置项 统一加前缀<code>mx</code>。</p> <ul><li>如果是计算属性，则前缀是<code>mxc</code></li> <li>如果是 props,则前缀是<code>mxp</code>：</li></ul> <div class="language- extra-class"><pre class="language-text"><code>
+export default{
+props:{
+mxpTitleName:{type:String ,default:&quot;&quot;}
+},
+computed:{
+mxcTitle(){}
+},
+methods:{
+mxTableMethod1(){
+
+        },
+    }
+
+}
+</code></pre></div></div> <!----> <!----> </div></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.bcaddda2.js" defer></script><script src="/assets/js/7.f0855c9f.js" defer></script><script src="/assets/js/1.27c8ca9b.js" defer></script><script src="/assets/js/2.44c6b616.js" defer></script><script src="/assets/js/25.ac3a1d8f.js" defer></script>
+  </body>
+</html>
