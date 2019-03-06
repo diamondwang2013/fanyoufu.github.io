@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[27],{201:function(t,e,s){"use strict";s.r(e);var n=s(6),l=Object(n.a)({},function(){var t=this.$createElement;return(this._self._c||t)("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}})},[],!1,null,null,null);l.options.__file="simplevuejs.md";e.default=l.exports}}]);

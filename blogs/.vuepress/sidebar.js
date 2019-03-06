@@ -1,0 +1,1 @@
+module.exports = {"/algorithm/":["","1.md","array-sort.md"],"/javascript/":["","beetercoder.md","design_model.md","func.md"],"/think/":["","create-npm-cli.md","get-to-kown-cros.md","how-to-focus-on.md","how-to-use-npm-link.md","some-detail.md"],"/typescript/":["","dev-gulp-env.md"],"/vue/":["","codeformatter.md","component.md","simplevuejs.md"]}
