@@ -24,4 +24,4 @@ npm run update
 
 在 theme/comonents/home.vue 中，你可以看到一些端倪。 features 项的设置是在 项目目录 blogs 下的 readme.md 中定义的。
 
-###
+### 

@@ -18,7 +18,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名 
 #git remote add origin https://github.com/fanyoufu/fanyoufu.github.io.git
-git remote add origin https://github.com/fanyoufu/blog.git master:gh-pages
+#git remote add origin https://github.com/fanyoufu/blog.git
 git push -f origin master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目

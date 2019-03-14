@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		html,body{font-size: 20px;}
+		.container{
+			margin:20px auto;
+			width: 40rem;
+			padding:2em;
+			background-color: #eee;
+		}
+		.subArea{display:flex;}
+		.subArea span{font-size: 6rem;}
+		.subArea button{width: 5rem;margin-left:0.5rem;}
+		ul{list-style: none}
+		ul > li{display: inline-block;border:1px solid #ccc;padding:1em;margin-right:5px;}
+		.cur{border-color: red; font-weight: bold;}
+		input{padding:3px;width:7rem;line-height:6rem;text-align: center;font-size: 3rem;}
+		input.result{position: relative;}
+
+		.result::after{
+			content: "";
+			position: absolute;
+			top:0;
+			left:0;
+			border:1px solid red;
+			width: 50px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">	
+		<h1>四则运算器</h1>
+		<div id="app">
+			<ul>
+				<li :class="{cur:op==='+'}" @click="changeOp('+')"> + </li>
+				<li :class="{cur:op==='-'}" @click="changeOp('-')"> - </li>
+				<li :class="{cur:op==='*'}" @click="changeOp('*')"> * </li>
+				<li :class="{cur:op==='/'}" @click="changeOp('/')"> / </li>
+			</ul>
+			<div class="subArea">
+				<input type="text" :value="num1"> 
+				<span>{{op}}</span>
+				<input type="text" :value="num2">
+				<span>=</span>
+				<input class="result" ref="result" type="text" v-model="result" v-on:keyup.enter="checkAns"/>
+	
+				<button @click="checkAns">检查</button>
+			</div>
+			<div id="scoreList">
+				剩余时间:{{time}}
+			</div>
+		</div>
+	</div>
+<script src="https://cdn.bootcss.com/vue/2.6.8/vue.js"></script>
+<script src="./subject.js"></script>
+<script>
+	function Timer(second){
+		this.listenerList = {"start":[],"normal":[],"end":[]}
+		this.second = second
+
+		this.timerId = setInterval(()=>{
+			if(this.second == 0){
+				clearInterval(this.timerId);
+				this.fire("end")
+				return;
+			}
+			this.second--;
+			this.fire();
+		},500)
+
+	}
+
+	Timer.prototype.addListener = function(f,status="normal"){
+		this.listenerList[status].push(f,)
+	} 
+	Timer.prototype.removeListener = function(f,status="normal"){
+		let index = this.listenerList[status].find(item => item === f)
+		this.listenerList[status].splice(index,1);
+	}
+	Timer.prototype.fire = function(status="normal"){
+		this.listenerList[status].forEach(item=>{
+			item(this.second);
+		})
+	}
+	
+	window.addEventListener("load",()=>{
+		
+		let timer = new Timer(30)
+
+		let subject = new Subject();
+		console.info(subject);
+
+		
+		
+
+		let vm = new Vue({
+			el:"#app",
+			data:{
+				num1:subject.num1,
+				num2:subject.num2,
+				op:"+",
+				result:"",
+				time:0,
+			},
+			mounted() {
+				this.$refs.result.focus()
+				
+			},
+			methods:{
+				changeOp(op){
+					this.op = op;
+					subject.setOperator(this.op);
+					this.$refs.result.focus()
+				},
+				next(){
+					subject.next();
+					this.num1 = subject.num1;
+					this.num2 = subject.num2;
+				},
+				checkAns(){
+					if(this.result == subject.result){
+						alert(1)
+					}
+					else{
+						alert(0)
+					}
+					this.result = "";
+					this.$refs.result.focus()
+					this.next();
+				}
+			}
+		})
+
+		timer.addListener((t)=>{
+			vm.time = t;
+		})
+	});
+
+	
+</script>
+</body>
+</html>
