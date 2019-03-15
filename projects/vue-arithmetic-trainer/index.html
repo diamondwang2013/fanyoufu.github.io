@@ -6,53 +6,49 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 	<style>
-		html,body{font-size: 20px;}
+		html,body{font-size: 30px;}
+		body{
+			display: flex;
+		}
+		input { font-size: 2rem; width:5rem;}
 		a{text-decoration: none;}
 		.container{
-			box-sizing: border-box;
-			margin:20px auto;
-			padding:2em;
+			width: 95%;
+			margin:2rem auto;
 			background-color: #eee;
 		}
-		#app{position: relative;}
+		#app{position: relative;display: flex;flex-direction: column;width:100%;align-items: center;}
 		#scoreList{
 			transition: all .5s;
+			padding:1rem;
 		}
 		.end{
 			position: absolute;
 			top: 0;
 			background: #fff;
-			width: 100%;
 			padding: 10px;
+			border-radius: 0.1rem;
+			border:1px solid #ccc;
+			box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5)
 		}
-		.subArea{justify-content: space-around;}
-		.subArea span{flex:1 1 auto; font-size: 6rem;}
-		.subArea button{flex:1 1 auto; margin-left:0.5rem;}
-		.subArea input{flex:1 1 auto; padding:3px;line-height:6rem;text-align: center;font-size: 3rem;}
+		.subArea{display:flex;justify-content:center;width: 100%;overflow: hidden;font-size: 2rem;margin-bottom: 1rem;}
+		.subArea span{ }
+		.subArea button{ }
+		.subArea input{flex-basis: 2rem;  text-align: center;margin:0 1rem; }
 		.subArea input.result{position: relative;}
 		ul{list-style: none}
-		ul > li{display: inline-block;border:1px solid #ccc;padding:1em;margin-right:5px;}
+		ul > li{display: inline-block;border:1px solid #ccc;padding:2rem;margin-right:5px;}
 		.cur{border-color: red; font-weight: bold;}
-		
-
-		.result::after{
-			content: "";
-			position: absolute;
-			top:0;
-			left:0;
-			border:1px solid red;
-			width: 50px;
-			height: 50px;
-		}
+		.tc{text-align: center;}
 		.right{color:green}
 		.error{color:red}
 		.idx{background-color: grey;color:#fff;padding:3px;margin-right: 5px;}
-		.fs2{font-size: 2em;}
+		.fs2{font-size: 2rem;}
 	</style>
 </head>
 <body>
 	<div class="container">	
-		<h1>四则运算器</h1>
+		<h2 class="tc">四则运算器</h2>
 		<div id="app">
 			<ul>
 				<li :class="{cur:op==='+'}" @click="changeOp('+')"> + </li>
@@ -66,26 +62,26 @@
 				<input type="text" :value="num2" disabled>
 				<span>=</span>
 				<input class="result" ref="result" type="text" v-model="result" v-on:keyup.enter="checkAns" :disabled="isTimeout"/>
-	
-				<button @click="checkAns" :disabled="isTimeout">检查</button>
+				<input type="button" @click="checkAns" :disabled="isTimeout" value="检查" />
 			</div>
 			<div id="scoreList" :class="{'end':isTimeout}">
-				<p>剩余时间:{{time}}</p>
+				<p>剩余时间:{{time}}秒</p>
 				<div>
-					<h2>已答{{list.length}}题 - 正确{{list.filter(i=>i.isRight).length}}题</h2>
+					<div>已答{{list.length}}题 - 正确{{list.filter(i=>i.isRight).length}}题</div>
 					<p v-for="(item,index) in list" :class="item.isRight ? 'right' :'error'">
 						<span class="idx">{{index+1}} </span>{{item.subStr}} 
 						<span v-if="item.isRight">right</span>
 						<span v-else>error - {{item.ans}}</span>
 					</p>
 				</div>
-				<a class="fs2" href="index.html" v-show="isTimeout"> 再来</a>
+				<p class="tc"><a class="fs2" href="index.html" v-show="isTimeout"> 再来</a></p>
 			</div>
 		</div>
 	</div>
 <script src="https://cdn.bootcss.com/vue/2.6.8/vue.js"></script>
 <script src="./subject.js"></script>
 <script>
+
 	function Timer(second){
 		this.listenerList = {"start":[],"normal":[],"end":[]}
 		this.second = second
@@ -98,7 +94,7 @@
 			}
 			this.second--;
 			this.fire();
-		},500)
+		},1000)
 
 	}
 
@@ -116,7 +112,8 @@
 	}
 	
 	window.addEventListener("load",()=>{
-		let timer = new Timer(60*1)
+		document.getElementsByTagName("html")[0].style.fontSize = document.documentElement.clientWidth / 1356 * 30 + "px";
+		let timer = new Timer(3*1)
 		let subject = new Subject();
 		let vm = new Vue({
 			el:"#app",
