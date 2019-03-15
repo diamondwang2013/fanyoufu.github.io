@@ -31,6 +31,10 @@
         this.next();
     }
 
+    Subject.prototype.toString = function(){
+        return [this.num1,this.operator,this.num2,"=",this.result].join(" ");
+    }
+
     Subject.prototype.getRandomNumber= function() {
         let level = this.levevl
         let min = Math.pow(10, level - 1)

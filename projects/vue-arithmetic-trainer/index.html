@@ -10,6 +10,17 @@
 			padding:2em;
 			background-color: #eee;
 		}
+		#app{position: relative;}
+		#scoreList{
+			transition: all .5s;
+		}
+		.end{
+			position: absolute;
+			top: 0;
+			background: #fff;
+			width: 100%;
+			padding: 10px;
+		}
 		.subArea{display:flex;}
 		.subArea span{font-size: 6rem;}
 		.subArea button{width: 5rem;margin-left:0.5rem;}
@@ -28,6 +39,9 @@
 			width: 50px;
 			height: 50px;
 		}
+		.right{color:green}
+		.error{color:red}
+		.idx{background-color: grey;color:#fff;padding:3px;margin-right: 5px;}
 	</style>
 </head>
 <body>
@@ -41,16 +55,24 @@
 				<li :class="{cur:op==='/'}" @click="changeOp('/')"> / </li>
 			</ul>
 			<div class="subArea">
-				<input type="text" :value="num1"> 
+				<input type="text" :value="num1" disabled> 
 				<span>{{op}}</span>
-				<input type="text" :value="num2">
+				<input type="text" :value="num2" disabled>
 				<span>=</span>
-				<input class="result" ref="result" type="text" v-model="result" v-on:keyup.enter="checkAns"/>
+				<input class="result" ref="result" type="text" v-model="result" v-on:keyup.enter="checkAns" :disabled="isTimeout"/>
 	
-				<button @click="checkAns">检查</button>
+				<button @click="checkAns" :disabled="isTimeout">检查</button>
 			</div>
-			<div id="scoreList">
-				剩余时间:{{time}}
+			<div id="scoreList" :class="{'end':isTimeout}">
+				<p>剩余时间:{{time}}</p>
+				<div>
+					<h2>已答{{list.length}}题 - 正确{{list.filter(i=>i.isRight).length}}题</h2>
+					<p v-for="(item,index) in list" :class="item.isRight ? 'right' :'error'">
+						<span class="idx">{{index+1}} </span>{{item.subStr}} 
+						<span v-if="item.isRight">right</span>
+						<span v-else>error - {{item.ans}}</span>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -87,15 +109,8 @@
 	}
 	
 	window.addEventListener("load",()=>{
-		
-		let timer = new Timer(30)
-
+		let timer = new Timer(30*1)
 		let subject = new Subject();
-		console.info(subject);
-
-		
-		
-
 		let vm = new Vue({
 			el:"#app",
 			data:{
@@ -104,6 +119,8 @@
 				op:"+",
 				result:"",
 				time:0,
+				list:[],
+				isTimeout:false,
 			},
 			mounted() {
 				this.$refs.result.focus()
@@ -122,14 +139,15 @@
 				},
 				checkAns(){
 					if(this.result == subject.result){
-						alert(1)
+						this.list.unshift({subStr:subject.toString(),ans:this.result,isRight:true})
 					}
 					else{
-						alert(0)
+						this.list.unshift({subStr:subject.toString(),ans:this.result,isRight:false})
 					}
 					this.result = "";
 					this.$refs.result.focus()
 					this.next();
+		
 				}
 			}
 		})
@@ -137,6 +155,10 @@
 		timer.addListener((t)=>{
 			vm.time = t;
 		})
+		timer.addListener(()=>{
+			vm.isTimeout = true;
+			// document.getElementById("scoreList").classList.add("end")
+		},"end")
 	});
 
 	
