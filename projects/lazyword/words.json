@@ -1,8 +1,8 @@
 {
-    "width":"宽度",
-    "height":"高度",
-    "marge":"外边距",
-    "adoptable":"可采纳的",
-    "throttle":"节流",
-    "debounce":"防抖"
+  "width": "宽度",
+  "height": "高度",
+  "marge": "外边距",
+  "adoptable": "可采纳的",
+  "throttle": "节流",
+  "debounce": "防抖"
 }

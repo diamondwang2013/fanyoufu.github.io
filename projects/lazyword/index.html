@@ -1,79 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-        .wordAudio{
-            display: none;
-        }
+      body {
+        padding: 20px;
+      }
+      #wordsList button {
+        margin: 0.5rem;
+      }
     </style>
-</head>
-<body>
-    <div class ="audioList">
-        <audio controls="controls" id="word1" class="wordAudio">
-            <source id="ts" src="http://dict.youdao.com/dictvoice?audio=width" type="audio/mpeg">
-        </audio>
-    </div>
-    <div class="container">
-        <h2>学习单词</h2>
-        <div class="wordsList" id="wordsList">
-          
-        </div>
-
+  </head>
+  <body>
+    <div>
+      <audio id="audioId">
+        <source type="audio/mpeg" />
+        您的浏览器不支持 audio 元素。
+      </audio>
+      <button id="btn">play</button>
+      <hr />
+      <div id="wordsList"></div>
+      <div id="audioList"></div>
     </div>
     <script>
-        
-        document.getElementById("wordsList").addEventListener("click",(e)=>{
-            console.dir(e.target);
-            let aduioid = "word1"
-            console.info( document.getElementById("ts").src )
-            document.getElementById(aduioid).src = "http://dict.youdao.com/dictvoice?audio="+e.target.innerText
+      let aduio = document.getElementById("audioId");
+      let wordEnArr = [];
+      let wordZHArr = [];
+      let wordObj = {};
+      let start = 0,
+        maxTimes = 3;
 
-            document.getElementById(aduioid).addEventListener("canplay",()=>{
+      let currentIndex = 0;
 
-                document.getElementById(aduioid).play()
-            })
-            
-        })
+      function readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+          if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+          }
+        };
+        rawFile.send(null);
+      }
 
-        function buildWords(objList){
-            objList.forEach(item=>{
-               let btn =  document.createElement("button");
-               btn.innerText = item.en;
+      //usage:
+      readTextFile("./words.json", function(text) {
+        wordObj = JSON.parse(text);
+        wordEnArr = Object.keys(wordObj);
+        wordZHArr = Object.values(wordObj);
+      });
 
-               document.getElementById("wordsList").appendChild(btn)
-            })
-
-
-
+      document.getElementById("btn").addEventListener("click", () => {
+        function getNext() {
+          if (currentIndex > wordEnArr.length - 1) {
+            return;
+          }
+          start = 0;
+          aduio.src = "./source/" + wordEnArr[currentIndex] + ".mp3";
+          console.info("getNext.....", currentIndex, aduio.src);
+          currentIndex++;
         }
-        function readTextFile(file, callback) {
-            var rawFile = new XMLHttpRequest();
-            rawFile.overrideMimeType("application/json");
-            rawFile.open("GET", file, true);
-            rawFile.onreadystatechange = function() {
-                if (rawFile.readyState === 4 && rawFile.status == "200") {
-                    callback(rawFile.responseText);
-                }
-            }
-            rawFile.send(null);
-        }
+        buildWords();
+        getNext();
 
-        //usage:
-        readTextFile("./words.json", function(text){
-            var data = JSON.parse(text);
-            console.log(data);
-            let dataList = Object.keys(data).map(item=>{
-                return {
-                    "zh": data[item],
-                    "en":item
-                }
-            })
-            buildWords(dataList)
+        aduio.addEventListener("ended", () => {
+          setTimeout(() => {
+            play();
+          }, 1000);
         });
+        function play() {
+          if (maxTimes < start) {
+            console.info("getNext...");
+            buildWords();
+            getNext();
+
+            return;
+          }
+
+          aduio.play();
+          start++;
+        }
+        aduio.addEventListener("canplaythrough", () => {
+          play();
+        });
+      });
+
+      document.getElementById("wordsList").addEventListener("click", e => {
+        let aduioid = e.target.value;
+        console.dir(e.target.value);
+        document.getElementById(aduioid).src = "./source/" + e.target.value + ".mp3";
+
+        document.getElementById(aduioid).addEventListener("canplay", () => {
+          document.getElementById(aduioid).play();
+        });
+      });
+
+      function buildWords() {
+        let en = wordEnArr[currentIndex];
+        let btn = document.createElement("button");
+        btn.value = en;
+        btn.innerText = wordZHArr[currentIndex] + en;
+
+        document.getElementById("wordsList").appendChild(btn);
+
+        let audio = document.createElement("audio");
+        audio.id = en;
+        let source = document.createElement("source");
+        source.src = "./source" + en + ".mp3";
+        source.type = "aduio/mpeg";
+        document.getElementById("audioList").appendChild(audio);
+      }
     </script>
-</body>
+  </body>
 </html>
