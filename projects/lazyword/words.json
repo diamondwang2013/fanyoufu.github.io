@@ -4,5 +4,9 @@
   "marge": "外边距",
   "adoptable": "可采纳的",
   "throttle": "节流",
-  "debounce": "防抖"
+  "debounce": "防抖",
+  "component": "组件",
+  "method": "方法",
+  "prototype": "原型",
+  "object": "对象"
 }

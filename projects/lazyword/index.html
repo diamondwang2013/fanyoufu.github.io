@@ -20,12 +20,15 @@
         <source type="audio/mpeg" />
         您的浏览器不支持 audio 元素。
       </audio>
-      <button id="btn">play</button>
+      <button id="btn">play</button> <button id="again">再来一次</button>
       <hr />
       <div id="wordsList"></div>
       <div id="audioList"></div>
     </div>
     <script>
+      document.getElementById("again").addEventListener("click", () => {
+        location.reload();
+      });
       let aduio = document.getElementById("audioId");
       let wordEnArr = [];
       let wordZHArr = [];
